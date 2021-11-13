@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+
+  database:
+    container_name: database
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+  core_app:
+    container_name: core_app
+    build:
+      context: ./apis/core_app
+      target: development
+    depends_on:
+      - database
+    volumes:
+      - ./apis/core_app:/app/
+    ports:
+      - "8000:80"
+
+  random_name:
+    container_name: random_name
+    build:
+      context: ./apis/random_name
+      target: development
+    volumes:
+      - ./apis/random_name:/app/
+    ports:
+      - "8002:80"
+
+  random_number:
+    container_name: random_number
+    build:
+      context: ./apis/random_number
+      target: development
+    volumes:
+      - ./apis/random_number:/app/
+    ports:
+      - "8001:80"

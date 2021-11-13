@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "random_name"
+version = "0.1.0"
+description = "Do you want some random names?"
+authors = ["Renan Santana <renan_ota@hotmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.70.0"
+uvicorn = "^0.15.0"
+names = "^0.3.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.10b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
