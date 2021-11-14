@@ -5,7 +5,25 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
-## Setup do Server
+## Descrição
+
+Pequeno ambiente criado para estudo diversos usando a ferramenta [Prefect](https://www.prefect.io/).
+
+O ambiente consiste atualmente em:
+
+- 1 API (FastAPI) que fornecem números aleatórios
+- 1 API (FastAPI) que fornecem nomes aleatórios
+- 1 API (Django + Django Rest Framework)
+- 1 Nginx fazendo o proxy reverso até essas APIs
+- 1 Banco de dados Postgres
+- 1 App Prefect para servir de server
+
+## Setup do ambiente
+```
+docker-compose up
+```
+
+## Setup do Prefect Server
 
 Alterar o backend default para o server
 ```
