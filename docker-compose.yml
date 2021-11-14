@@ -2,14 +2,6 @@ version: "3.8"
 
 services:
 
-  nginx:
-    container_name: nginx
-    image: nginx
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - "8080:80"
-
   database:
     container_name: database
     image: postgres
@@ -17,6 +9,20 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      # Mapear a pasta dos arquivos static para que o nginx possa servi-los
+      - ./apis/core_app/static:/static
+    depends_on:
+      - core_app
+      - random_name
+      - random_number
+    ports:
+      - "8000:80"
 
   core_app:
     container_name: core_app
@@ -28,7 +34,7 @@ services:
     volumes:
       - ./apis/core_app:/app/
     ports:
-      - "8000:80"
+      - "8001:80"
 
   random_name:
     container_name: random_name
@@ -48,4 +54,4 @@ services:
     volumes:
       - ./apis/random_number:/app/
     ports:
-      - "8001:80"
+      - "8003:80"
