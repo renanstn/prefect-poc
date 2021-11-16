@@ -11,9 +11,10 @@ Pequeno ambiente criado para estudo diversos usando a ferramenta [Prefect](https
 
 O ambiente consiste atualmente em:
 
-- 1 API (FastAPI) que fornecem números aleatórios
-- 1 API (FastAPI) que fornecem nomes aleatórios
-- 1 API (Django + Django Rest Framework)
+- 1 API que fornecem números aleatórios (FastAPI)
+- 1 API que fornecem nomes aleatórios (FastAPI)
+- 1 API que soma 2 valores e retorna o resultado (FastAPI)
+- 1 API central que chamará todas as outras e armazenará os resultados (Django Rest Framework)
 - 1 Nginx fazendo o proxy reverso até essas APIs
 - 1 Banco de dados Postgres
 - 1 App Prefect para servir de server
