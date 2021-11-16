@@ -21,6 +21,7 @@ services:
       - core_app
       - random_name
       - random_number
+      - calculator
     ports:
       - "8000:80"
 
