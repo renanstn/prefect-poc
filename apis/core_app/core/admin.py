@@ -1,3 +1,8 @@
 from django.contrib import admin
+from core import models
 
-# Register your models here.
+
+@admin.register(models.Run)
+class RunAdmin(admin.ModelAdmin):
+    list_display = ["id", "result"]
+    ordering = ["id"]
