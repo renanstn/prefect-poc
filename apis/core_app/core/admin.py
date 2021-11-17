@@ -6,3 +6,9 @@ from core import models
 class RunAdmin(admin.ModelAdmin):
     list_display = ["id", "result"]
     ordering = ["id"]
+
+
+@admin.register(models.Value)
+class ValueAdmin(admin.ModelAdmin):
+    list_display = ["id", "value_a", "value_b"]
+    ordering = ["id"]
