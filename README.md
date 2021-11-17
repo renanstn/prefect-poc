@@ -25,7 +25,7 @@ Para estudo, foi criado um fluxo extremamente aleatório onde, ao receber um `PO
 - Busca um nome aleatório na API `random_name`
 - Busca 2 números aleatórios na API `random_number`
 - Soma os 2 números usando a API `calculator`
-- Concatena o nome buscado com o resultado da soma no seguinte formato: `{nome}-{soma}`
+- Concatena o nome buscado com o resultado da soma no seguinte formato: `"{nome}-{soma}"`
 - Salva o resultado no banco para eventuais consultas
 
 ## Setup do ambiente
