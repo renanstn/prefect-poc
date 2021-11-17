@@ -24,6 +24,11 @@ O ambiente consiste atualmente em:
 docker-compose up
 ```
 
+### Disparar fluxo
+```
+curl -X POST http://localhost:8000/api/start_flux/
+```
+
 ## Setup do Prefect Server
 
 Alterar o backend default para o server
