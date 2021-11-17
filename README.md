@@ -32,7 +32,7 @@ curl -X POST http://localhost:8000/api/start_flux/
 
 ## Setup do Prefect Server
 
-Alterar o backend default para o server
+Alterar o backend default para o server local
 ```
 prefect backend server
 ```
