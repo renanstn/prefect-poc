@@ -1,7 +1,8 @@
 from rest_framework.response import Response
 from rest_framework import viewsets
+from prefect import Flow
 
-from core.utils import helpers
+from core.utils import tasks
 from core.api import serializers
 from core import models
 
@@ -21,17 +22,38 @@ class StartFluxViewSet(viewsets.ViewSet):
     """
 
     def create(self, request):
-        random_name = helpers.get_random_name()
-        random_value_a = helpers.get_random_number()
-        random_value_b = helpers.get_random_number()
-        numbers_sum = helpers.sum_values(random_value_a, random_value_b)
-        run = {
-            "result": f"{random_name}-{numbers_sum}",
-            "values": [{"value_a": random_value_a, "value_b": random_value_b}],
-        }
-        run_serializer = serializers.RunSerializer(data=run)
-        run_serializer.is_valid(raise_exception=True)
-        run_serializer.save()
+        random_name_task = tasks.GetRandomName()
+        random_number_task = tasks.GetRandomNumber()
+
+        with Flow("Teste") as flow:
+            # Get random values from APIs
+            random_name = random_name_task.run()
+            random_value_a = random_number_task.run()
+            random_value_b = random_number_task.run()
+
+            # Sum random numbers using API
+            sum_task = tasks.SumValues(random_value_a, random_value_b)
+            numbers_sum = sum_task.run()
+
+            # Prepare data to save
+            run = {
+                "result": f"{random_name}-{numbers_sum}",
+                "values": [
+                    {
+                        "value_a": random_value_a,
+                        "value_b": random_value_b,
+                        "name": random_name,
+                    }
+                ],
+            }
+
+            # Save data
+            run_serializer = serializers.RunSerializer(data=run)
+            run_serializer.is_valid(raise_exception=True)
+            run_serializer.save()
+
+            flow.run()
+
         return Response({"message": "pipeline finished"})
 
 

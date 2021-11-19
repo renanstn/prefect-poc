@@ -5,7 +5,7 @@ from core import models
 class ValueSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Value
-        fields = ("value_a", "value_b")
+        fields = ("value_a", "value_b", "name")
 
 
 class RunSerializer(serializers.ModelSerializer):

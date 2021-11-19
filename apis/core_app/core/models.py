@@ -24,6 +24,7 @@ class Value(models.Model):
     )
     value_a = models.IntegerField()
     value_b = models.IntegerField()
+    name = models.CharField(max_length=255)
 
     def __str__(self) -> str:
         return f"{self.run.id}: {self.value_a} / {self.value_b}"
