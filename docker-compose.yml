@@ -10,6 +10,10 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
 
+  broker:
+    container_name: broker
+    image: rabbitmq
+
   nginx:
     container_name: nginx
     image: nginx
@@ -32,10 +36,19 @@ services:
       target: development
     depends_on:
       - database
+      - broker
     volumes:
       - ./apis/core_app:/app/
     ports:
       - "8001:80"
+
+  worker:
+    container_name: worker
+    build:
+      context: ./apis/core_app
+      target: worker
+    volumes:
+      - ./apis/core_app:/app/
 
   random_name:
     container_name: random_name

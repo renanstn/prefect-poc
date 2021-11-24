@@ -11,6 +11,7 @@ from core.api import viewsets as api_viewsets
 router = routers.DefaultRouter()
 
 router.register("ping", api_viewsets.HelloViewSet, basename="ping")
+router.register("celery", api_viewsets.CeleryViewSet, basename="celery")
 router.register(
     "start_flux", api_viewsets.StartFluxViewSet, basename="start_flux"
 )

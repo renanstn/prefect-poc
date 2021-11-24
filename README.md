@@ -19,6 +19,8 @@ O ambiente consiste atualmente em:
 - 1 Nginx fazendo o proxy reverso até essas APIs
 - 1 Banco de dados Postgres
 - 1 App Prefect para servir de server
+- 1 worker para rodar as tasks do Celery
+- 1 broker RabbitMQ para que o Celery funcione
 
 Para estudo, foi criado um fluxo extremamente aleatório onde, ao receber um `POST` no endpoint `/api/start_flux/`, a API Core:
 
@@ -33,9 +35,14 @@ Para estudo, foi criado um fluxo extremamente aleatório onde, ao receber um `PO
 docker-compose up
 ```
 
-### Disparar fluxo
+### Disparar fluxo de exemplo
 ```
 curl -X POST http://localhost:8000/api/start_flux/
+```
+
+### Disparar exemplo de tarefa assíncrona usando o celery
+```
+curl -X POST http://localhost:8000/api/celery/
 ```
 
 ## Setup do Prefect Server

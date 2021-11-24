@@ -24,7 +24,17 @@ CMD ["sh", "setup_dev.sh"]
 # =============================================================================
 FROM base as production
 RUN poetry config virtualenvs.create false
-RUN poetry install --no-dev
+RUN poetry install --no-dev --no-interaction --no-ansi
 COPY . /app/
 RUN chmod +x /app/*.sh
 CMD ["sh", "setup_prod.sh"]
+
+# =============================================================================
+# Celery worker
+# =============================================================================
+FROM base as worker
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-interaction --no-ansi
+COPY . /app/
+RUN chmod +x /app/*.sh
+CMD ["sh", "start_celery_worker.sh"]

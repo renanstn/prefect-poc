@@ -110,3 +110,7 @@ STATIC_ROOT = "/app/static/"
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery config
+
+CELERY_BROKER_URL = "amqp://guest:guest@broker"

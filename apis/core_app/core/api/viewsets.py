@@ -5,6 +5,7 @@ from prefect import Flow
 from core.utils import tasks
 from core.api import serializers
 from core import models
+from core.tasks import test
 
 
 class HelloViewSet(viewsets.ViewSet):
@@ -16,9 +17,19 @@ class HelloViewSet(viewsets.ViewSet):
         return Response({"message": "pong"})
 
 
+class CeleryViewSet(viewsets.ViewSet):
+    """
+    Endpoint to receive posts to test celery async calls
+    """
+
+    def create(self, request):
+        test.delay()
+        return Response({"message": "task running in background"})
+
+
 class StartFluxViewSet(viewsets.ViewSet):
     """
-    An endpoint to receive commands to start the flux pipeline
+    Endpoint to receive commands to start the flux pipeline
     """
 
     def create(self, request):
