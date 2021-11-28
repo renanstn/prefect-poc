@@ -1,0 +1,11 @@
+{# https://docs.djangoproject.com/en/3.2/ref/contrib/admin/ #}
+
+{% extends "admin/change_list.html" %}
+{% load static %}
+{% block content %}
+
+<h4>Upload CSV file</h4>
+<a href="upload-csv/">Click here to upload</a>
+
+{{ block.super }}
+{% endblock %}

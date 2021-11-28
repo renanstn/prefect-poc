@@ -28,3 +28,14 @@ class Value(models.Model):
 
     def __str__(self) -> str:
         return f"{self.run.id}: {self.value_a} / {self.value_b}"
+
+
+class Food(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, help_text="The food's name")
+    price = models.DecimalField(
+        max_digits=5, decimal_places=2, help_text="The food's price"
+    )
+
+    def __str__(self) -> str:
+        return self.name
