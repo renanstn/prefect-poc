@@ -3,6 +3,7 @@
 # =============================================================================
 FROM python:3.9 AS base
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV DOCKERENV 1
 RUN pip install --upgrade pip
 RUN pip install poetry
