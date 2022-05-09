@@ -9,3 +9,6 @@ create_project:
 
 register_flows:
 	prefect register --project $(PROJECT_NAME) -p .
+
+format:
+	black .
