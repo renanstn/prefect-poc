@@ -9,5 +9,3 @@ def hello_task():
 
 with Flow("hello-flow") as flow:
     hello_task()
-
-flow.register(project_name="prefect_app")
