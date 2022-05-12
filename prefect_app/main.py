@@ -1,12 +1,13 @@
-import prefect
-from prefect import task, Flow
+from prefect import Flow
 
-
-@task
-def hello_task():
-    logger = prefect.context.get("logger")
-    logger.info("Hello world!")
+import tasks
 
 
 with Flow("hello-flow") as flow:
-    hello_task()
+    random_name = tasks.GetRandomName(name="GetRandomName")()
+    number_a = tasks.GetRandomNumber(name="GetRandomNumberA")()
+    number_b = tasks.GetRandomNumber(name="GetRandomNumberB")()
+
+    result = tasks.SumValues(name="SumValues")(number_a, number_b)
+
+    tasks.ShowLog(name="ShowLog")(random_name, result)
